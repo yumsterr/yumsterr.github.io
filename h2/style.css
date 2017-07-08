@@ -4,6 +4,28 @@ body {
     padding-top: 160px;
 }
 
+/*@keyframes mymove {*/
+/*0%   {top: -10px; left: -45px;, transform: translate(0px, 0px);}*/
+/*5%   {transform: translate(0px, 0px);}*/
+/*25%   {transform: translate(4px, -4px);}*/
+/*50%  {top: -25px;left: -60px; transform: translate(0px, 0px);}*/
+/*75%   {transform: translate(4px, -4px);}*/
+/*95%   {transform: translate(0px, 0px);}*/
+/*100% {top: -10px; left: -45px; transform: translate(0px, 0px);}*/
+/*}*/
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg) translateX(15px) rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg) translateX(15px) rotate(-360deg);
+    }
+}
+
+input:focus {
+    outline: none;
+}
+
 .header {
     position: fixed;
     top: 0;
@@ -40,7 +62,6 @@ body {
 }
 
 .search input[type=text]:focus {
-    outline: none;
     border-color: #627172;
     width: 250px;
 }
@@ -161,19 +182,31 @@ body {
 }
 
 .big-quote::before {
-    content: url(quote_left.png);
+    content: "";
+    background: url(quote_left.png);
+    height: 40px;
+    width: 34px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
     position: absolute;
     top: -10px;
     left: -45px;
-    transform: scale(.7);
+
+    animation: mymove 2s infinite;
 }
 
 .big-quote::after {
-    content: url("quote_right.png");
+    content: "";
+    background: url(quote_right.png);
+    height: 40px;
+    width: 34px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
     position: absolute;
     bottom: -20px;
     right: -35px;
-    transform: scale(.7);
 }
 
 .section-team {
@@ -220,6 +253,16 @@ body {
     text-align: center;
     font-size: 25px;
     font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.animate-shield {
+    animation: rotate 2s infinite;
+    margin-left: 20px;
+    animation-timing-function: ease-in-out;
+
 }
 
 .footer {
@@ -263,10 +306,11 @@ body {
     font-family: 'Muli', sans-serif;
     transition: width 0.5s;
 }
-.join-form input[type=text]:focus {
-    outline: none;
+
+.join-form input:focus {
     border-color: #627172;
 }
+
 .join-head {
     text-align: center;
     font-size: 25px;
@@ -286,6 +330,7 @@ body {
 .footer .quote span {
     position: relative;
 }
+
 .footer .quote span::before {
     content: url(quote_left.png);
     position: absolute;
