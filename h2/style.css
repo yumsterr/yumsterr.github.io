@@ -47,7 +47,6 @@ input:focus {
 
 .logo {
     display: inline-block;
-    width: 130px;
     text-align: center;
     margin: 0 auto;
 }
@@ -449,16 +448,18 @@ input:focus {
     left: calc(50% - 5px);
     top: 23px;
 }
-.mobile-search{
+
+.mobile-search {
     display: none;
 }
+
 @media screen and (max-width: 1200px) {
 
 }
 
 @media screen and (max-width: 991px) {
     body {
-        padding-top: 90px;
+        padding-top: 70px;
     }
 
     .header {
@@ -468,13 +469,16 @@ input:focus {
     .hamburger {
         display: block;
     }
-    .header-top .search{
+
+    .header-top .search {
         display: none;
     }
-    .mobile-search .search{
+
+    .mobile-search .search {
         position: relative;
-        right:0;
+        right: 0;
     }
+
     .mobile-search {
         display: block;
     }
@@ -491,14 +495,14 @@ input:focus {
         flex-direction: column;
         display: flex;
         justify-content: flex-start;
-        height: calc(100vh - 110px);
+        height: calc(100vh - 900px);
         align-items: flex-start;
     }
 
     .aside {
         top: 90px;
         width: 60px;
-        height: calc(100vh - 110px);
+        height: calc(100vh - 90px);
     }
 
     .aside a span {
@@ -509,16 +513,25 @@ input:focus {
         height: calc(100vh - 90px);
     }
 
+    .header-top {
+        height: 70px;
+    }
+
+    .logo img {
+        width: 70px;
+    }
+
     .section-team {
         margin-left: 60px;
     }
-    .footer{
+
+    .footer {
         margin-left: 60px;
     }
 }
 
 @media screen and (max-width: 480px) {
-    .section-about .big-quote{
+    .section-about .big-quote {
         position: absolute;
         width: 60%;
         top: 20%;
@@ -526,47 +539,58 @@ input:focus {
         font-size: 19px;
         line-height: 35px;
     }
-    .big-quote::before{
+
+    .big-quote::before {
         top: -30px;
         left: -33px;
 
     }
-    .section-team .item{
+
+    .section-team .item {
         position: relative;
     }
-    .section-team .item-img{
+
+    .section-team .item-img {
         position: absolute;
         width: 100%;
         opacity: 0.3;
     }
-    .section-team .about-hero{
+
+    .section-team .about-hero {
         z-index: 1;
-        width: 100% ;
+        width: 100%;
     }
-    .join-form{
-        width:auto;
+
+    .join-form {
+        width: auto;
     }
+
     .footer {
         width: calc(100vw - 60px);
 
     }
-    .footer *{
+
+    .footer * {
         box-sizing: border-box;
     }
-    .join-form input[type=text]{
+
+    .join-form input[type=text] {
         width: 100%;
         padding: 5px 20px;
         height: 40px;
     }
-    .join-form input[type=submit]{
+
+    .join-form input[type=submit] {
         background-color: #fff;
         right: 8px;
     }
-    .footer .quote{
+
+    .footer .quote {
         line-height: 25px;
         font-size: 16px;
         margin-top: 15px;
     }
+
     .section-team .about-hero p {
         padding: 10px 10px;
         max-height: 65%;
