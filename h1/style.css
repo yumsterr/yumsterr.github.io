@@ -1,0 +1,185 @@
+/*general*/
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    margin: 0 auto;
+    font-size: 18px;
+}
+
+body{
+    margin: 0;
+}
+
+/*header*/
+
+.header {
+    height: 90px;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.header .logo {
+    float: left;
+}
+
+.header .logo img {
+    max-width: 120px;
+    max-height: 90px;
+    display: block;
+}
+
+.header .header-text {
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+    background-color: #c6ccff;
+}
+
+.header .header-menu a {
+    margin-left: 15px;
+    display: inline-block;
+    vertical-align: middle;
+
+}
+
+.header .header-menu .settings {
+    background-image: url(http://i.piccy.info/i9/2dc092fa0b8e3169753597f0e468ac5f/1499266871/658/1159796/settings.png);
+    height: 25px;
+    width: 25px;
+    display: inline-block;
+}
+
+
+/*main container*/
+
+.content {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.aside {
+    width: 210px;
+    background-color: #c1e5ff;
+    position: absolute;
+    height: 100%;
+    /*float: left;*/
+}
+
+.aside .aside-menu {
+    padding: 20px;
+    text-align: left;
+}
+
+.aside .aside-menu a {
+    display: block;
+    margin-bottom: 15px;
+}
+
+.main-side {
+    margin-left: 210px;
+    background-color: #c6ccff;
+}
+
+.clear {
+    clear: both;
+}
+
+.flex-boxes {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 65px 45px;
+    justify-content: center;
+}
+
+.flex-boxes .box {
+    width: 250px;
+    background-color: #a6b4ff;
+    margin: 15px;
+    border: 1px solid #7280b5;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.flex-boxes .box.star::before{
+    content: url(http://i.piccy.info/i9/2d2be99279812609c4e35538f2496a4a/1499338784/1398/1159796/death_star_256.png);
+    position: absolute;
+    top: -10px;
+    left: -15px;
+}
+
+/*footer*/
+
+.footer .columns {
+    font-size: 0;
+    background-color: #c1e5ff;
+}
+
+.footer .columns .col li {
+    list-style: none;
+}
+
+.footer .columns .col {
+    display: inline-block;
+    width: 25%;
+    font-size: 18px;
+    vertical-align: top;
+
+}
+
+
+.footer .footer-links .right-icons {
+    display: inline-block;
+    float: right;
+}
+
+.footer .footer-links .left-links {
+    display: inline-block;
+}
+
+.footer .footer-links {
+    background-color: #c6ccff;
+    padding: 10px 20px;
+    height: 40px;
+    line-height: 40px;
+}
+
+.footer-links a {
+    vertical-align: middle;
+}
+
+.footer a.fb {
+    background-image: url(http://sportacentrs.com/images/login-buttons/icon-facebook-colored.png);
+    height: 25px;
+    width: 25px;
+    display: inline-block;
+}
+
+.footer a.insta {
+    background-image: url(https://muzkom.ru/images/muzkom-page-24x24_0/3s9re75dfh.png);
+    height: 25px;
+    width: 25px;
+    display: inline-block;
+}
+
+.footer a.ghb {
+    background-image: url(http://bigfatcorki.de/wp-content/themes/CreativePortfolioResFree/images/flickr-icon.png);
+    height: 25px;
+    width: 25px;
+    display: inline-block;
+}
