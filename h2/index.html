@@ -11,9 +11,18 @@
 <div class="container">
     <div class="header">
         <div class="header-top">
-
+            <div class="hamburger">
+                <div id="nav-icon2">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
             <div class="logo">
-                <img src="logo.png" alt="">
+                <img src="images/logo.png" alt="">
             </div>
             <div class="search">
                 <form action="">
@@ -28,6 +37,14 @@
             <div class="header-menu__item"><a href="#">Thor</a></div>
             <div class="header-menu__item"><a href="#">Hulk</a></div>
             <div class="header-menu__item"><a href="#">Other</a></div>
+            <div class="header-menu__item mobile-search">
+                <div class="search">
+                    <form action="">
+                        <input type="text" placeholder="Search">
+                        <input type="submit" value="">
+                    </form>
+                </div>
+            </div>
 
         </div>
     </div>
@@ -36,16 +53,16 @@
             <div class="aside-menu__item">
 
                 <a href="#about" class="aside-menu__item-about">
-                    <img src="about.png" alt="About us">
+                    <img src="images/about.png" alt="About us">
                     <span>About us</span></a>
             </div>
             <div class="aside-menu__item">
 
-                <a href="#team"><img src="team.png" alt="Meet the team">
+                <a href="#team"><img src="images/team.png" alt="Meet the team">
                     <span>Meet the team</span></a>
             </div>
             <div class="aside-menu__item">
-                <a href="#join"><img src="call.png" alt="Join Avengers">
+                <a href="#join"><img src="images/call.png" alt="Join Avengers">
                     <span>Join Avengers</span></a>
             </div>
         </div>
@@ -54,16 +71,17 @@
         <div class="section-about" id="about">
             <div class="about-bg">
             </div>
-            <div class="big-quote">There was an idea to bring together a group of remarkable people. So when we needed them, they could fight the battles, that no one could.
+            <div class="big-quote">There was an idea to bring together a group of remarkable people. So when we needed
+                them, they could fight the battles, that no one could.
             </div>
         </div>
         <div class="section-team" id="team">
             <div class="item">
-                <div class="item-img"><img src="cap.jpg" alt=""></div>
+                <div class="item-img"><img src="images/cap.jpg" alt=""></div>
                 <div class="about-hero">
                     <div class="name">Captain America
 
-                        <img src="cap_shield.png" class="animate-shield" alt=""></div>
+                        <img src="images/cap_shield.png" class="animate-shield" alt=""></div>
                     <p>Vowing to serve his country any way he could, young Steve Rogers took the super soldier serum to
                         become America's one-man army. Fighting for the red, white and blue for over 60 years, Captain
                         America is the living, breathing symbol of freedom and liberty.</p>
@@ -71,16 +89,16 @@
             </div>
             <div class="item">
                 <div class="about-hero">
-                    <div class="name">Iron Man </div>
+                    <div class="name">Iron Man</div>
                     <p>Wounded, captured and forced to build a weapon by his enemies, billionaire industrialist Tony
                         Stark instead created an advanced suit of armor to save his life and escape captivity. Now with
                         a new outlook on life, Tony uses his money and intelligence to make the world a safer, better
                         place as Iron Man. </p>
                 </div>
-                <div class="item-img"><img src="ironman.jpg" alt=""></div>
+                <div class="item-img"><img src="images/ironman.jpg" alt=""></div>
             </div>
             <div class="item">
-                <div class="item-img"><img src="thor.jpg" alt=""></div>
+                <div class="item-img"><img src="images/thor.jpg" alt=""></div>
                 <div class="about-hero">
                     <div class="name">Thor</div>
                     <p>As the Norse God of thunder and lightning, Thor wields one of the greatest weapons ever made, the
@@ -96,7 +114,7 @@
                         was transformed into the incredibly powerful creature called the Hulk. An all too often
                         misunderstood hero, the angrier the Hulk gets, the stronger the Hulk gets.</p>
                 </div>
-                <div class="item-img"><img src="hulk.jpg" alt=""></div>
+                <div class="item-img"><img src="images/hulk.jpg" alt=""></div>
             </div>
         </div>
 
@@ -105,8 +123,8 @@
         <div class="join-form" id="join">
             <div class="join-head">Join us!</div>
             <form action="">
-            <input type="text" class="wide" placeholder="how can we contact you?">
-            <input type="submit" value="">
+                <input type="text" class="wide" placeholder="how can we contact you?">
+                <input type="submit" value="">
             </form>
         </div>
         <div class="quote">
@@ -116,5 +134,7 @@
         </div>
     </div>
 </div>
+
+<script src="script.js"></script>
 </body>
 </html>
