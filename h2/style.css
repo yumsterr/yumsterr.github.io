@@ -495,7 +495,7 @@ input:focus {
         flex-direction: column;
         display: flex;
         justify-content: flex-start;
-        height: calc(100vh - 900px);
+        height: calc(100vh - 90px);
         align-items: flex-start;
     }
 
