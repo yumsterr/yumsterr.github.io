@@ -17,54 +17,71 @@ const newsParentNode = document.querySelector('.news-feed');
 
 let rebuildFeed = new Event('rebuild');
 
+
 let feedBuilder = (articles) => {
+    let startInd = 0;
     articles = sortItems(articles);
-    buildItems(10, 0, articles);
+    buildItems(10, startInd, articles);
     checkActiveTags();
     loader('hide');
-    newsParentNode.addEventListener('rebuild', function(e){
+    newsParentNode.addEventListener('rebuild', function (e) {
         loader('show');
         newsParentNode.innerHTML = "";
+        startInd = 0;
         articles = sortItems(articles);
-        buildItems(10, 0, articles);
+        buildItems(10, startInd, articles);
         checkActiveTags();
         loader('hide');
-    })
+    });
+
+    window.addEventListener('scroll', function (e) {
+        let currentScrollPos = window.scrollY + window.innerHeight + 50 ;
+        let newsHeight = newsParentNode.scrollHeight + newsParentNode.offsetTop;
+        if (currentScrollPos > newsHeight) {
+            startInd += 10;
+            if (startInd <= articles.length) {
+                buildItems(10, startInd, articles);
+                checkActiveTags();
+            }
+        }
+    });
 };
 
 let buildItems = (count, start, articles) => {
     let cellProto = document.querySelector('.news-item.proto').innerHTML;
     // const newsParentNode = document.querySelector('.news-feed');
-    for (let i = 0; i < 10; i++) {
+    let endInd = start + count;
+    for (let i = start; i < endInd; i++) {
         let newChild = document.createElement('div');
         const currentArticle = articles[i];
+        if (currentArticle) {
+            newChild.innerHTML = cellProto;
+            newChild.classList.add('news-item');
+            newsParentNode.appendChild(newChild);
 
-        newChild.innerHTML = cellProto;
-        newChild.classList.add('news-item');
-        newsParentNode.appendChild(newChild);
+            let imgNode = newChild.querySelector('img');
+            let nameNode = newChild.querySelector('.name');
+            let dateNode = newChild.querySelector('.date');
+            let tagsNode = newChild.querySelector('.tags');
+            let descriptionNode = newChild.querySelector('.description');
 
-        let imgNode = newChild.querySelector('img');
-        let nameNode = newChild.querySelector('.name');
-        let dateNode = newChild.querySelector('.date');
-        let tagsNode = newChild.querySelector('.tags');
-        let descriptionNode = newChild.querySelector('.description');
+            if (currentArticle.image.length)
+                imgNode.setAttribute('src', currentArticle.image);
 
-        if (currentArticle.image.length)
-            imgNode.setAttribute('src', currentArticle.image);
+            if (currentArticle.title.length)
+                nameNode.innerHTML = currentArticle.title;
 
-        if (currentArticle.title.length)
-            nameNode.innerHTML = currentArticle.title;
+            if (currentArticle.createdAt.length) {
+                let dateFormat = new Date(currentArticle.createdAt);
+                dateNode.innerHTML = dateFormat.toLocaleDateString() + ' ' + dateFormat.toLocaleTimeString();
+            }
 
-        if (currentArticle.createdAt.length) {
-            let dateFormat = new Date(currentArticle.createdAt);
-            dateNode.innerHTML = dateFormat.toLocaleDateString() + ' ' + dateFormat.toLocaleTimeString();
+            if (currentArticle.tags.length)
+                tagsBuilder(currentArticle.tags, tagsNode);
+
+            if (currentArticle.description.length)
+                descriptionNode.innerHTML = currentArticle.description;
         }
-
-        if (currentArticle.tags.length)
-            tagsBuilder(currentArticle.tags, tagsNode);
-
-        if (currentArticle.description.length)
-            descriptionNode.innerHTML = currentArticle.description;
     }
 };
 
@@ -177,7 +194,7 @@ let getEqualItemsCount = (array1, array2) => {
 
 let loader = (state) => {
     let loaderNode = document.querySelector('.loader');
-    if(state === 'show'){
+    if (state === 'show') {
         loaderNode.classList.add('active');
     } else if (state === 'hide') {
         loaderNode.classList.remove('active');

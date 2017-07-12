@@ -5,6 +5,7 @@ body {
 .container{
     max-width: 100%;
     margin: 0 auto;
+    position: relative;
 }
 .aside {
     position: fixed;
@@ -28,15 +29,39 @@ body {
 .news-feed div{
     display: flex;
 }
-.news-feed {
+.main-content {
     max-width: 1170px;
     margin-left: 400px;
     padding: 0 20px;
 }
+.search {
+    padding: 20px 0;
+    width:100%;
+}
+
+.search form {
+    position: relative;
+}
+
+.search input[type=text]:focus {
+    border-color: #627172;
+    width: 250px;
+}
+
+.search input[type=text] {
+    width: 150px;
+    height: 30px;
+    padding: 5px 10px;
+    border: 1px solid #ecf0f1;
+    border-radius: 22px;
+    font-size: 15px;
+    font-family: 'Muli', sans-serif;
+    transition: width 0.5s;
+}
 
 .news-feed .news-item {
     display: flex;
-    height: 300px;
+    height: 250px;
     align-items: flex-start;
 
 }
