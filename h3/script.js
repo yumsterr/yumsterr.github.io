@@ -192,10 +192,10 @@ let sortItems = (articles) => {
             }
         }
         if (a.createdAt > b.createdAt) {
-            return 1;
+            return -1;
         }
         if (a.createdAt < b.createdAt) {
-            return -1;
+            return 1;
         }
 
         return 0;
