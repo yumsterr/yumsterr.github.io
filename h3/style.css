@@ -2,22 +2,31 @@ body {
     margin: 0;
     font-family: 'Muli', sans-serif;
 }
-.container{
+
+.container {
     max-width: 100%;
     margin: 0 auto;
     position: relative;
 }
+
 .aside {
     position: fixed;
     width: 350px;
     z-index: 10;
-    padding: 30px 0px;
     height: 100%;
     display: flex;
     background-color: #ecf0f1;
     align-items: center;
 }
-.aside .tags{
+
+.aside-menu {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.aside .tags {
     display: flex;
     flex-direction: column;
     padding: 0 117px;
@@ -26,17 +35,25 @@ body {
 .aside .tags a {
     margin-bottom: 10px;
 }
-.news-feed div{
+
+.news-feed div {
     display: flex;
 }
+
 .main-content {
     max-width: 1170px;
     margin-left: 400px;
     padding: 0 20px;
 }
+
+.edit {
+    text-align: center;
+    padding: 20px;
+    cursor: pointer;
+}
+
 .search {
-    padding: 20px 0;
-    width:100%;
+    margin: 40px auto;
 }
 
 .search form {
@@ -45,28 +62,40 @@ body {
 
 .search input[type=text]:focus {
     border-color: #627172;
-    width: 250px;
 }
 
 .search input[type=text] {
-    width: 150px;
+    width: 250px;
     height: 30px;
     padding: 5px 10px;
     border: 1px solid #ecf0f1;
-    border-radius: 22px;
     font-size: 15px;
     font-family: 'Muli', sans-serif;
-    transition: width 0.5s;
+}
+
+input:focus {
+    outline: none;
 }
 
 .news-feed .news-item {
     display: flex;
     height: 250px;
     align-items: flex-start;
-
+    position: relative;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+.news-item::after{
+    content: " ";
+    position: absolute;
+    bottom: 0px;
+    width: 75%;
+    height: 1px;
+    margin: 0 auto;
+    background-color: rgb(133,162,255);
 }
 /*.news-item:nth-child(2n+1) {*/
-    /*flex-direction: row-reverse;*/
+/*flex-direction: row-reverse;*/
 /*}*/
 
 .news-feed .item-img {
@@ -75,29 +104,31 @@ body {
 }
 
 /*.news-feed .item-img img {*/
-    /*max-width: 100%;*/
-    /*max-height: 300px;*/
+/*max-width: 100%;*/
+/*max-height: 300px;*/
 /*}*/
 
-.news-feed .date{
+.news-feed .date {
     margin: 10px 0;
 }
+
 .news-feed .description {
     line-height: 23px;
     overflow: hidden;
 }
 
 /*.news-feed .item-about a::before{*/
-    /*content: '#';*/
-    /*font-size: 16px;*/
-    /*position: absolute;*/
-    /*top:0;*/
-    /*left: -12px;*/
+/*content: '#';*/
+/*font-size: 16px;*/
+/*position: absolute;*/
+/*top:0;*/
+/*left: -12px;*/
 /*}*/
-.tags a:hover, .tags a.active{
+.tags a:hover, .tags a.active {
     opacity: 1;
 }
-.tags a{
+
+.tags a {
     color: #fff;
     padding: 10px 20px;
     position: relative;
@@ -106,13 +137,24 @@ body {
     font-weight: bold;
     height: 20px;
 }
+
+.news-feed {
+    padding-top: 50px;
+}
 .news-feed .item-about {
     height: 100%;
     display: flex;
     flex-direction: column;
-     align-items: flex-start;
-    justify-content: center;
+    align-items: flex-start;
+    justify-content: flex-start;
     padding-right: 30px;
+    position: relative;
+}
+
+.remove-item {
+    cursor: pointer;
+    font-size:14px;
+    color: rgb(133, 162, 255);
 }
 
 .item-about .name {
@@ -124,33 +166,48 @@ body {
     align-items: center;
 }
 
-.news-feed .news-item.proto{
+.news-item.proto {
     display: none;
 }
 
-a[data-tag=Business]{
+.nothingFound.active {
+    display: block;
+}
+
+.nothingFound {
+    display: none;
+    margin: 150px auto;
+}
+
+a[data-tag=Business] {
     background-color: #2980b9;
 }
-a[data-tag=Sport]{
+
+a[data-tag=Sport] {
     background-color: #f39c12;
 }
-a[data-tag=Politics]{
+
+a[data-tag=Politics] {
     background-color: #3498db;
 }
-a[data-tag=Food]{
+
+a[data-tag=Food] {
     background-color: #e74c3c;
 }
-a[data-tag=Tech]{
+
+a[data-tag=Tech] {
     background-color: #1abc9c;
 }
-a[data-tag=Culture]{
+
+a[data-tag=Culture] {
     background-color: #9b59b6;
 }
-a[data-tag=Showbiz]{
+
+a[data-tag=Showbiz] {
     background-color: #2ecc71;
 }
 
-.loader{
+.loader {
     display: none;
     width: 100vw;
     height: 100vh;
@@ -160,9 +217,10 @@ a[data-tag=Showbiz]{
     z-index: 100;
 }
 
-.loader.active{
+.loader.active {
     display: block;
 }
+
 .cssload-spin-box {
     position: absolute;
     margin: auto;
@@ -173,11 +231,11 @@ a[data-tag=Showbiz]{
     width: 23px;
     height: 23px;
     border-radius: 100%;
-    box-shadow: 23px 23px rgb(133,162,255), -23px 23px rgb(236,240,241), -23px -23px rgb(133,162,255), 23px -23px rgb(236,240,241);
-    -o-box-shadow: 23px 23px rgb(133,162,255), -23px 23px rgb(236,240,241), -23px -23px rgb(133,162,255), 23px -23px rgb(236,240,241);
-    -ms-box-shadow: 23px 23px rgb(133,162,255), -23px 23px rgb(236,240,241), -23px -23px rgb(133,162,255), 23px -23px rgb(236,240,241);
-    -webkit-box-shadow: 23px 23px rgb(133,162,255), -23px 23px rgb(236,240,241), -23px -23px rgb(133,162,255), 23px -23px rgb(236,240,241);
-    -moz-box-shadow: 23px 23px rgb(133,162,255), -23px 23px rgb(236,240,241), -23px -23px rgb(133,162,255), 23px -23px rgb(236,240,241);
+    box-shadow: 23px 23px rgb(133, 162, 255), -23px 23px rgb(236, 240, 241), -23px -23px rgb(133, 162, 255), 23px -23px rgb(236, 240, 241);
+    -o-box-shadow: 23px 23px rgb(133, 162, 255), -23px 23px rgb(236, 240, 241), -23px -23px rgb(133, 162, 255), 23px -23px rgb(236, 240, 241);
+    -ms-box-shadow: 23px 23px rgb(133, 162, 255), -23px 23px rgb(236, 240, 241), -23px -23px rgb(133, 162, 255), 23px -23px rgb(236, 240, 241);
+    -webkit-box-shadow: 23px 23px rgb(133, 162, 255), -23px 23px rgb(236, 240, 241), -23px -23px rgb(133, 162, 255), 23px -23px rgb(236, 240, 241);
+    -moz-box-shadow: 23px 23px rgb(133, 162, 255), -23px 23px rgb(236, 240, 241), -23px -23px rgb(133, 162, 255), 23px -23px rgb(236, 240, 241);
     animation: cssload-spin ease infinite 4.6s;
     -o-animation: cssload-spin ease infinite 4.6s;
     -ms-animation: cssload-spin ease infinite 4.6s;
@@ -185,84 +243,82 @@ a[data-tag=Showbiz]{
     -moz-animation: cssload-spin ease infinite 4.6s;
 }
 
-
-
 @keyframes cssload-spin {
     0%,
     100% {
-        box-shadow: 23px 23px rgb(133,162,255), -23px 23px rgb(236,240,241), -23px -23px rgb(133,162,255), 23px -23px rgb(236,240,241);
+        box-shadow: 23px 23px rgb(133, 162, 255), -23px 23px rgb(236, 240, 241), -23px -23px rgb(133, 162, 255), 23px -23px rgb(236, 240, 241);
     }
     25% {
-        box-shadow: -23px 23px rgb(236,240,241), -23px -23px rgb(133,162,255), 23px -23px rgb(236,240,241), 23px 23px rgb(133,162,255);
+        box-shadow: -23px 23px rgb(236, 240, 241), -23px -23px rgb(133, 162, 255), 23px -23px rgb(236, 240, 241), 23px 23px rgb(133, 162, 255);
     }
     50% {
-        box-shadow: -23px -23px rgb(133,162,255), 23px -23px rgb(236,240,241), 23px 23px rgb(133,162,255), -23px 23px rgb(236,240,241);
+        box-shadow: -23px -23px rgb(133, 162, 255), 23px -23px rgb(236, 240, 241), 23px 23px rgb(133, 162, 255), -23px 23px rgb(236, 240, 241);
     }
     75% {
-        box-shadow: 23px -23px rgb(236,240,241), 23px 23px rgb(133,162,255), -23px 23px rgb(236,240,241), -23px -23px rgb(133,162,255);
+        box-shadow: 23px -23px rgb(236, 240, 241), 23px 23px rgb(133, 162, 255), -23px 23px rgb(236, 240, 241), -23px -23px rgb(133, 162, 255);
     }
 }
 
 @-o-keyframes cssload-spin {
     0%,
     100% {
-        box-shadow: 23px 23px rgb(133,162,255), -23px 23px rgb(236,240,241), -23px -23px rgb(133,162,255), 23px -23px rgb(236,240,241);
+        box-shadow: 23px 23px rgb(133, 162, 255), -23px 23px rgb(236, 240, 241), -23px -23px rgb(133, 162, 255), 23px -23px rgb(236, 240, 241);
     }
     25% {
-        box-shadow: -23px 23px rgb(236,240,241), -23px -23px rgb(133,162,255), 23px -23px rgb(236,240,241), 23px 23px rgb(133,162,255);
+        box-shadow: -23px 23px rgb(236, 240, 241), -23px -23px rgb(133, 162, 255), 23px -23px rgb(236, 240, 241), 23px 23px rgb(133, 162, 255);
     }
     50% {
-        box-shadow: -23px -23px rgb(133,162,255), 23px -23px rgb(236,240,241), 23px 23px rgb(133,162,255), -23px 23px rgb(236,240,241);
+        box-shadow: -23px -23px rgb(133, 162, 255), 23px -23px rgb(236, 240, 241), 23px 23px rgb(133, 162, 255), -23px 23px rgb(236, 240, 241);
     }
     75% {
-        box-shadow: 23px -23px rgb(236,240,241), 23px 23px rgb(133,162,255), -23px 23px rgb(236,240,241), -23px -23px rgb(133,162,255);
+        box-shadow: 23px -23px rgb(236, 240, 241), 23px 23px rgb(133, 162, 255), -23px 23px rgb(236, 240, 241), -23px -23px rgb(133, 162, 255);
     }
 }
 
 @-ms-keyframes cssload-spin {
     0%,
     100% {
-        box-shadow: 23px 23px rgb(133,162,255), -23px 23px rgb(236,240,241), -23px -23px rgb(133,162,255), 23px -23px rgb(236,240,241);
+        box-shadow: 23px 23px rgb(133, 162, 255), -23px 23px rgb(236, 240, 241), -23px -23px rgb(133, 162, 255), 23px -23px rgb(236, 240, 241);
     }
     25% {
-        box-shadow: -23px 23px rgb(236,240,241), -23px -23px rgb(133,162,255), 23px -23px rgb(236,240,241), 23px 23px rgb(133,162,255);
+        box-shadow: -23px 23px rgb(236, 240, 241), -23px -23px rgb(133, 162, 255), 23px -23px rgb(236, 240, 241), 23px 23px rgb(133, 162, 255);
     }
     50% {
-        box-shadow: -23px -23px rgb(133,162,255), 23px -23px rgb(236,240,241), 23px 23px rgb(133,162,255), -23px 23px rgb(236,240,241);
+        box-shadow: -23px -23px rgb(133, 162, 255), 23px -23px rgb(236, 240, 241), 23px 23px rgb(133, 162, 255), -23px 23px rgb(236, 240, 241);
     }
     75% {
-        box-shadow: 23px -23px rgb(236,240,241), 23px 23px rgb(133,162,255), -23px 23px rgb(236,240,241), -23px -23px rgb(133,162,255);
+        box-shadow: 23px -23px rgb(236, 240, 241), 23px 23px rgb(133, 162, 255), -23px 23px rgb(236, 240, 241), -23px -23px rgb(133, 162, 255);
     }
 }
 
 @-webkit-keyframes cssload-spin {
     0%,
     100% {
-        box-shadow: 23px 23px rgb(133,162,255), -23px 23px rgb(236,240,241), -23px -23px rgb(133,162,255), 23px -23px rgb(236,240,241);
+        box-shadow: 23px 23px rgb(133, 162, 255), -23px 23px rgb(236, 240, 241), -23px -23px rgb(133, 162, 255), 23px -23px rgb(236, 240, 241);
     }
     25% {
-        box-shadow: -23px 23px rgb(236,240,241), -23px -23px rgb(133,162,255), 23px -23px rgb(236,240,241), 23px 23px rgb(133,162,255);
+        box-shadow: -23px 23px rgb(236, 240, 241), -23px -23px rgb(133, 162, 255), 23px -23px rgb(236, 240, 241), 23px 23px rgb(133, 162, 255);
     }
     50% {
-        box-shadow: -23px -23px rgb(133,162,255), 23px -23px rgb(236,240,241), 23px 23px rgb(133,162,255), -23px 23px rgb(236,240,241);
+        box-shadow: -23px -23px rgb(133, 162, 255), 23px -23px rgb(236, 240, 241), 23px 23px rgb(133, 162, 255), -23px 23px rgb(236, 240, 241);
     }
     75% {
-        box-shadow: 23px -23px rgb(236,240,241), 23px 23px rgb(133,162,255), -23px 23px rgb(236,240,241), -23px -23px rgb(133,162,255);
+        box-shadow: 23px -23px rgb(236, 240, 241), 23px 23px rgb(133, 162, 255), -23px 23px rgb(236, 240, 241), -23px -23px rgb(133, 162, 255);
     }
 }
 
 @-moz-keyframes cssload-spin {
     0%,
     100% {
-        box-shadow: 23px 23px rgb(133,162,255), -23px 23px rgb(236,240,241), -23px -23px rgb(133,162,255), 23px -23px rgb(236,240,241);
+        box-shadow: 23px 23px rgb(133, 162, 255), -23px 23px rgb(236, 240, 241), -23px -23px rgb(133, 162, 255), 23px -23px rgb(236, 240, 241);
     }
     25% {
-        box-shadow: -23px 23px rgb(236,240,241), -23px -23px rgb(133,162,255), 23px -23px rgb(236,240,241), 23px 23px rgb(133,162,255);
+        box-shadow: -23px 23px rgb(236, 240, 241), -23px -23px rgb(133, 162, 255), 23px -23px rgb(236, 240, 241), 23px 23px rgb(133, 162, 255);
     }
     50% {
-        box-shadow: -23px -23px rgb(133,162,255), 23px -23px rgb(236,240,241), 23px 23px rgb(133,162,255), -23px 23px rgb(236,240,241);
+        box-shadow: -23px -23px rgb(133, 162, 255), 23px -23px rgb(236, 240, 241), 23px 23px rgb(133, 162, 255), -23px 23px rgb(236, 240, 241);
     }
     75% {
-        box-shadow: 23px -23px rgb(236,240,241), 23px 23px rgb(133,162,255), -23px 23px rgb(236,240,241), -23px -23px rgb(133,162,255);
+        box-shadow: 23px -23px rgb(236, 240, 241), 23px 23px rgb(133, 162, 255), -23px 23px rgb(236, 240, 241), -23px -23px rgb(133, 162, 255);
     }
 }
