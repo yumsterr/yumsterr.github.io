@@ -166,7 +166,8 @@ input:focus {
 }
 
 .nothingFound.active {
-    display: block;
+    display: flex;
+    justify-content: center;
 }
 
 .nothingFound {
