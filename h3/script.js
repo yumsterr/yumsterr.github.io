@@ -15,12 +15,11 @@ fetch('https://api.myjson.com/bins/152f9j')
 const newsParentNode = document.querySelector('.news-feed');
 
 let rebuildFeed = new Event('rebuild');
-
+let deletedItems = [];
 
 let feedBuilder = (articles) => {
     // let reservedArticles = Object.assign({},articles);
     let reservedArticles = articles.slice(0);
-    console.log(articles);
     let startInd = 0;
     articles = sortItems(articles);
     getAllTags(articles);
@@ -53,14 +52,13 @@ let feedBuilder = (articles) => {
         let searchContent = searchInput.value.toLowerCase();
         articles = reservedArticles.filter(function (item) {
 
-            if (item.title.toLowerCase().indexOf(searchContent) !== -1) {
+            if ((item.title.toLowerCase().indexOf(searchContent) !== -1)&& (deletedItems.indexOf(item.title) === -1)) {
                 console.log(item);
                 return true;
             } else {
                 return false;
             }
         });
-        console.log(articles.length);
         newsParentNode.innerHTML = "";
         if (articles.length > 0) {
             document.querySelector('.nothingFound').classList.remove('active');
@@ -83,7 +81,7 @@ let buildItems = (count, start, articles) => {
     for (let i = start; i < endInd; i++) {
         let newChild = document.createElement('div');
         const currentArticle = articles[i];
-        if (currentArticle) {
+        if (currentArticle && (deletedItems.indexOf(currentArticle.title) === -1)) {
             newChild.innerHTML = cellProto;
             newChild.classList.add('news-item');
             newsParentNode.appendChild(newChild);
@@ -181,6 +179,8 @@ let checkActiveTags = () => {
 let sortItems = (articles) => {
     let savedTags = JSON.parse(localStorage.getItem('tags'));
     let sortedArticles = articles.sort(function (a, b) {
+        let aDeleted = deletedItems.indexOf(a.title);
+        let bDeleted = deletedItems.indexOf(b.title);
         if (savedTags !== null) {
             let equalTagsA = getEqualItemsCount(a.tags, savedTags);
             let equalTagsB = getEqualItemsCount(b.tags, savedTags);
@@ -191,13 +191,18 @@ let sortItems = (articles) => {
                 return 1;
             }
         }
+        if (aDeleted > bDeleted) {
+            return 1;
+        }
+        if (aDeleted < bDeleted) {
+            return -1;
+        }
         if (a.createdAt > b.createdAt) {
             return -1;
         }
         if (a.createdAt < b.createdAt) {
             return 1;
         }
-
         return 0;
     });
 
@@ -231,5 +236,8 @@ let loader = (state) => {
     }
 };
 let removeItem = (el) => {
-   el.closest('.news-item').remove();
+
+   let item = el.closest('.news-item');
+   deletedItems.push(item.querySelector('.name').innerHTML);
+   item.remove();
 };
